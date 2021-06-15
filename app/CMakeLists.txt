@@ -16,6 +16,5 @@ target_sources(
     app 
     PRIVATE
         src/main.cpp
-        src/hello.adb
-        src/put_time.adb
+        src/target_speed.adb
 )

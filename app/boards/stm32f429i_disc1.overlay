@@ -13,3 +13,8 @@
 &spi5 {
 	status = "disabled";
 };
+
+&adc1 {
+	//pinctrl-0 = <&adc1_in5_pa0 &adc1_in6_pa1 &adc1_in8_pa3 &adc1_in9_pa4>;
+	status = "okay";
+};
