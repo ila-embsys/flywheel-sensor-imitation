@@ -55,5 +55,6 @@ void main()
             adc_read(dev_adc, &i);
         }
         update_rpm(*(int*)(sequences[0].buffer));
+        k_sleep(K_MSEC(100));
     }
 }
