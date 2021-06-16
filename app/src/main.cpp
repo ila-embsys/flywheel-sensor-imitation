@@ -11,7 +11,7 @@
 LOG_MODULE_REGISTER(main);
 
 extern "C" {
-extern void update_rpm(int current_rpm);
+extern void update_rpm(const int current_rpm, float* next_tooth_time);
 }
 
 const struct device* dev_adc = device_get_binding(ADC_NODE);
@@ -54,7 +54,10 @@ void main()
         for (auto& i : sequences) {
             adc_read(dev_adc, &i);
         }
-        update_rpm(*(int*)(sequences[0].buffer));
-        k_sleep(K_MSEC(100));
+        float next_tooth_time;
+        const int rpm = *(int*)(sequences[0].buffer);
+        update_rpm(rpm, &next_tooth_time);
+        unsigned next_tooth_time_usec = static_cast<unsigned>(next_tooth_time * 1000000);
+        k_sleep(K_USEC(next_tooth_time_usec));
     }
 }
