@@ -12,6 +12,7 @@ LOG_MODULE_REGISTER(main);
 
 extern "C" {
 extern void update_rpm(const int current_rpm, float* next_tooth_time);
+extern void time_to_tooth();
 }
 
 const struct device* dev_adc = device_get_binding(ADC_NODE);
@@ -59,5 +60,12 @@ void main()
         update_rpm(rpm, &next_tooth_time);
         unsigned next_tooth_time_usec = static_cast<unsigned>(next_tooth_time * 1000000);
         k_sleep(K_USEC(next_tooth_time_usec));
+        time_to_tooth();
     }
+}
+
+extern "C"
+void set_pin()
+{
+
 }
