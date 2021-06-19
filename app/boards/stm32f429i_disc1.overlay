@@ -1,3 +1,13 @@
+/ {
+	leds {
+		sensor1: sensor {
+			gpios = <&gpioa 12 GPIO_ACTIVE_HIGH>;
+			label = "Sensor output";
+			status = "okay";
+		};
+	};
+};
+
 &usart1 {
 	status = "okay";
 };
@@ -15,6 +25,6 @@
 };
 
 &adc1 {
-	//pinctrl-0 = <&adc1_in5_pa0 &adc1_in6_pa1 &adc1_in8_pa3 &adc1_in9_pa4>;
+	// pinctrl-0 = <&adc1_in0_pa0>;
 	status = "okay";
 };

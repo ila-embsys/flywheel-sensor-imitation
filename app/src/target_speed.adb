@@ -18,10 +18,10 @@ package body Target_Speed is
         Next_Tooth_Time := Target_Speed.Calculate_Tooth_Time(Current_Angular_Velocity);
         next_tooth_time := Next_Tooth_Time;
 
-        -- Put(Current_Angular_Velocity'Image);
-        -- Put(" rpm -> ");
-        -- Put(Integer(Next_Tooth_Time * 1000000.0)'Image);
-        -- Put_Line(" us");
+        Put(Current_Angular_Velocity'Image);
+        Put(" rpm -> ");
+        Put(Integer(Next_Tooth_Time * 1000000.0)'Image);
+        Put_Line(" us");
 
         exception
             when Constraint_Error => Put_Line ("Constraint_Error!");
@@ -48,30 +48,30 @@ package body Target_Speed is
 
     procedure Time_To_Tooth is
     begin
-        if (Tooth_Counter = Tooth'First) then
-            New_Line;
-        end if;
+        -- if (Tooth_Counter = Tooth'First) then
+        --     New_Line;
+        -- end if;
 
         if (Tooth_Counter = 40 or Tooth_Counter = 84) then
             Set_Pin(1);
-            Put("1");
+            -- Put("1");
             Increment_Tooth;
             return;
         end if;
 
         if (Tooth_Counter = 43 or Tooth_Counter = 87) then
             Set_Pin(0);
-            Put("0");
+            -- Put("0");
             Increment_Tooth;
             return;
         end if;
 
         if (Tooth_Counter mod 2) = 1 then
             Set_Pin(1);
-            Put("1");
+            -- Put("1");
         else
             Set_Pin(0);
-            Put("0");
+            -- Put("0");
         end if;
 
         Increment_Tooth;
